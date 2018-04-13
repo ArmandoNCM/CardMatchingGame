@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" >
+	<head>
+		<meta charset="UTF-8">
+		<title>Encontrar Pares</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" href="lib/reset.min.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<audio id="click" src="audio/click.wav" autostart="false" ></audio>
+		<audio id="match" src="audio/match.wav" autostart="false" ></audio>
+		<audio id="no_match" src="audio/no_match.wav" autostart="false" ></audio>
+		<audio id="finished" src="audio/finished.wav" autostart="false" ></audio>
+		<div class="wrap">
+			<div class="game"></div>
+			<div class="modal-overlay">
+				<div class="modal">
+					<h2 class="winner"></h2>
+					<button class="restart" onclick="location.href=''"></button>
+				</div>
+			</div>
+		</div>
+		<script>
+			var gameConfig;
+		</script>
+		<script src="config.js"></script>
+		<script src="lib/jquery.min.js"></script>
+		<script src="lib/require.js"></script>
+		<script  src="js/game.js"></script>
+	</body>
+
+</html>
