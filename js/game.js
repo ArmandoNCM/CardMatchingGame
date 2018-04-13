@@ -58,6 +58,7 @@
 			var guessId = $(_.guess).attr("data-id");
 			if(!_.paused && !$card.find(".inside").hasClass("matched") && !$card.find(".inside").hasClass("picked")){
 				$card.find(".inside").addClass("picked");
+				// $card.addClass("picked");
 				if(!_.guess){
 					_.guess = this;
 				} else if(guessId == $(this).attr("data-id") && !$(this).hasClass("picked")){
@@ -141,12 +142,15 @@
 				if(v.hasOwnProperty('img2')){
 					img = v.img2
 				}
-				frag += '<div class="card" \
-				data-id="'+ v.id +'"><div class="inside">\
-				<div class="front"><img src="'+ img +'"\
-				alt="'+ v.name +'" /></div>\
-				<div class="back"><img src="'+this.$backgroundCard+'"\
-				alt="" /></div></div>\
+				frag += '<div class="card" data-id="'+ v.id +'">\
+					<div class="inside">\
+						<div class="front">\
+							<img src="'+ img +'" alt="'+ v.name +'" />\
+						</div>\
+						<div class="back">\
+							<img src="'+this.$backgroundCard+'"	alt="" />\
+						</div>\
+					</div>\
 				</div>';
 			}
 			return frag;
@@ -177,7 +181,7 @@
 
 
 		var backModalWinner = json.backModalWinner;
-		$('.modal').css("background", "url(" + backModalWinner + ")");
+		$('.modal').css("background-image", "url(" + backModalWinner + ")");
 
 		var titleModalWinner = json.titleModalWinner;
 		$('.modal .winner').html(titleModalWinner);

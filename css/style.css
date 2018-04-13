@@ -1,3 +1,22 @@
+@font-face {
+  font-family: 'Grilled';
+  src: url('../fonts/grilledcheese.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/grilledcheese.eot?#iefix') format('embedded-opentype'), 
+       url('../fonts/grilledcheese.woff2') format('woff2'), 
+       url('../fonts/grilledcheese.woff') format('woff'), 
+       url('../fonts/grilledcheese.ttf')  format('truetype'), 
+       url('../fonts/grilledcheese.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+@font-face {
+  font-family: 'Oduda';
+  src: url('fonts/oduda-bold.eot'); /* IE9 Compat Modes */
+  src: url('fonts/oduda-bold.eot?#iefix') format('embedded-opentype'), 
+       url('fonts/oduda-bold.woff2') format('woff2'), 
+       url('fonts/oduda-bold.woff') format('woff'), 
+       url('fonts/oduda-bold.ttf')  format('truetype'), 
+       url('fonts/oduda-bold.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -28,26 +47,27 @@ body {
 }
 
 .game {
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
   min-height: 100%;
   height: 100%;
   width: 100%;
   display: table-cell;
   vertical-align: middle;
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1); 
 }
 
 .card {
+  position: relative;
   float: left;
   padding: 5px;
   text-align: center;
   display: block;
   -webkit-perspective: 30cm;
           perspective: 30cm;
-  position: relative;
 }
 
-.card .inside {
+.inside {
+  position: relative;
   width: 100%;
   height: 100%;
   display: block;
@@ -57,27 +77,20 @@ body {
   transition: .4s ease-in-out;
   border-radius: 3%;
   background: white;
+  visibility: hidden;
 }
 
 
-/* .card .inside.picked, .card .inside.matched { */
-.inside.picked, .inside.matched {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
-          
+.picked, .matched {
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+          visibility: visible;
 }
 .inside.matched {
-
-          background: green;
+    background: green;
 }
 
-.card .back {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  /* z-index: 100; */
-}
-
-.card .front, .card .back {
+.front, .back {
   position: absolute;
   top: 0;
   left: 0;
@@ -85,14 +98,12 @@ body {
   height: 100%;
 }
 
-.card .back img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 3%;
+.back {
+  visibility: visible;
 }
 
-.card .front img {
+.front img {
+  position: absolute;
   display: block;
   width: 90%;
   height: 90%;
@@ -101,25 +112,18 @@ body {
   border-radius: 3%;
 }
 
-.card .inside  {
-  /* display: none; */
-  visibility: hidden;
-  z-index: 20;
+.back img {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 3%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1); 
 }
 
-.card .inside.picked {
-  visibility: visible;
-}
-
-.card .back {
-  visibility: visible;
-}
-
-/* Esto generaba el primer bug */
-/* .card .front {
-  -webkit-transform: rotateY(-180deg);
-          transform: rotateY(-180deg);
-} */
 
 
 /* ----- MODAL ------- */
@@ -149,37 +153,41 @@ body {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   padding: 30px 10px;
+  background-size: cover;
+  background-position: center;
 }
 .modal .winner {
-  font-size: 80px;
+  font-size: 40px;
   text-align: center;
-  font-family: "Anton", sans-serif;
-  color: #4d4d4d;
+  font-family: "Grilled", sans-serif;
+  color: #ffe902;
   text-shadow: 0px 3px 0 black;
 }
 @media (max-width: 480px) {
   .modal .winner {
-    font-size: 60px;
+    font-size: 40px;
   }
 }
 .modal .restart {
-  font-family: "Anton", sans-serif;
+  font-family: "Oduda", sans-serif;
   margin: 30px auto;
-  padding: 20px 30px;
+  padding: 10px 20px;
   display: block;
-  font-size: 30px;
+  font-size: 16px;
   border: none;
-  background: -webkit-gradient(linear, left top, left bottom, from(#4d4d4d), to(#222));
-  background: linear-gradient(#4d4d4d, #222);
-  border: 1px solid #222;
-  border-radius: 5px;
+  border: 1px solid #fff;
+  border-radius: 25px;
   color: white;
   text-shadow: 0px 1px 0 black;
   cursor: pointer;
+
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
 }
 .modal .restart:hover {
-  background: -webkit-gradient(linear, left top, left bottom, from(#222), to(black));
-  background: linear-gradient(#222, black);
+  border: 2px solid #fff;
 }
 .modal .message {
   text-align: center;
