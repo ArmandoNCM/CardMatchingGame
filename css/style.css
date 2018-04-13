@@ -62,8 +62,8 @@ body {
   padding: 5px;
   text-align: center;
   display: block;
-  -webkit-perspective: 30cm;
-          perspective: 30cm;
+  /* -webkit-perspective: 30cm;
+          perspective: 30cm; */
 }
 
 .inside {
