@@ -81,13 +81,9 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  /* padding: 20px; */
 }
 .card .front img, .card .back img {
   display: block;
-  margin: 0 0 ;
-  /* max-width: 100%;
-  max-height: 100%; */
   width: 100%;
   height: 100%;
 }
@@ -95,19 +91,9 @@ body {
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
 }
-@media (max-width: 800px) {
-  .card .front {
-    padding: 5px;
-  }
-}
 .card .back {
   -webkit-transform: rotateX(0);
           transform: rotateX(0);
-}
-@media (max-width: 800px) {
-  .card .back {
-    padding: 10px;
-  }
 }
 
 .modal-overlay {
@@ -129,7 +115,6 @@ body {
   max-width: 90%;
   min-height: 380px;
   margin: 0 auto;
-  /*background: white;*/
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);

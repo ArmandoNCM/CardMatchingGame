@@ -220,38 +220,30 @@
 		var body = $('body');
 		var bodyWidth = body.width();
 		var bodyHeight = body.height();
-
 		
 		var cardHeight = bodyHeight / rows;
 		$('.card').css("height", cardHeight);
 
-
-
-		// var cardWidth = wrapDiv.width() / columns;
 		var cardWidth = cardHeight * 0.75;
 		$('.card').css("width", cardWidth);
 
 		var requiredWidth = (cardWidth * columns) + 1;
-		console.log(cardWidth);
-		console.log(requiredWidth);
 
+		if (requiredWidth > bodyWidth + 50){
 
+			cardWidth = bodyWidth / columns;
+			$('.card').css("width", cardWidth);
+			
+			cardHeight = cardWidth * 1.33;
+			$('.card').css("height", cardHeight);
+			
+			requiredWidth = (cardWidth * columns) + 1;
+		}
+		
 		wrapDiv.css("margin-left", 'auto');
 		wrapDiv.css("margin-right", 'auto');
 		var newWidth = requiredWidth;
 		wrapDiv.css("width", `${newWidth}`);
-
-
-
-		// var figure = json.figure;
-
-		// if (figure == "c") {
-		// 	$('.card').css("height", cardWidth);
-		// }else if(figure == "ral"){
-		// 	$('.card').css("height", cardWidth*1.2);
-		// }else if(figure == "ran"){
-		// 	$('.card').css("height", cardWidth/2);
-		// }
 
 	})();
     
