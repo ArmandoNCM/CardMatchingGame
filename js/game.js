@@ -238,6 +238,10 @@
 			$('.card').css("height", cardHeight);
 			
 			requiredWidth = (cardWidth * columns) + 1;
+
+			var topPadding = (bodyHeight - (cardHeight * rows)) / 2;
+			$('.wrap').css("padding-top", topPadding)
+
 		}
 		
 		wrapDiv.css("margin-left", 'auto');
