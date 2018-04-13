@@ -47,28 +47,34 @@
 		// kinda messy but hey
 		cardClicked: function(){
 			// https://www.soundjay.com
-			var sound = document.getElementById("click");
-			sound.play();
+			
+			var flipSound = document.getElementById("click");
+			setTimeout(function(){
+				flipSound.play();
+			} , 350);
+			var sound = null;
 			var _ = Memory;
 			var $card = $(this);
+			var guessId = $(_.guess).attr("data-id");
 			if(!_.paused && !$card.find(".inside").hasClass("matched") && !$card.find(".inside").hasClass("picked")){
 				$card.find(".inside").addClass("picked");
 				if(!_.guess){
-					_.guess = $(this).attr("data-id");
-				} else if(_.guess == $(this).attr("data-id") && !$(this).hasClass("picked")){
+					_.guess = this;
+				} else if(guessId == $(this).attr("data-id") && !$(this).hasClass("picked")){
 					$(".picked").addClass("matched");
 					_.guess = null;
 					sound = document.getElementById("match");
 				} else {
 					sound = document.getElementById("no_match");
-					_.guess = null;
 					_.paused = true;
 					setTimeout(function(){
-						$(".picked").removeClass("picked");
+						$card.find(".inside").removeClass("picked");
+						$(_.guess).find(".inside").removeClass("picked");
 						Memory.paused = false;
+						Memory.guess = null;
 					}, 600);
 				}
-				sound.play();
+				if (sound != null)	sound.play();
 				if($(".matched").length == $(".card").length){
 					sound = document.getElementById("finished");
 					sound.play();
@@ -161,10 +167,6 @@
 		}
 
 		var wrapDiv = $('.wrap');
-		// wrapDiv.css("margin-left", json.areaMarginLateral);
-		// wrapDiv.css("margin-right", json.areaMarginLateral);
-		// var newWidth = 100-(parseInt(json.areaMarginLateral)*2);
-		// wrapDiv.css("width", `${newWidth}%`);
 
 		var backgroundCard = json.backgroundCard;
 
@@ -173,25 +175,6 @@
 		var styleBackCard = document.createElement('style');
 		styleBackCard.type = 'text/css';
 
-		var keyFrames = '\
-		@-webkit-keyframes matchAnim {\
-		    0% {\
-		        background: A_DYNAMIC_VALUE;\
-		    }\
-		    100% {\
-		        background: white;\
-		    }\
-		}\
-		@keyframes matchAnim {\
-		    0% {\
-		        background: A_DYNAMIC_VALUE\
-		    }\
-		    100% {\
-		        background: white;\
-		    }\
-		}';
-		styleBackCard.innerHTML = keyFrames.replace(/A_DYNAMIC_VALUE/g, winnerColor);
-		document.getElementsByTagName('head')[0].appendChild(styleBackCard);
 
 		var backModalWinner = json.backModalWinner;
 		$('.modal').css("background", "url(" + backModalWinner + ")");

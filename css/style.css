@@ -30,8 +30,6 @@ body {
 .game {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  -webkit-perspective: 500px;
-          perspective: 500px;
   min-height: 100%;
   height: 100%;
   width: 100%;
@@ -44,12 +42,9 @@ body {
   padding: 5px;
   text-align: center;
   display: block;
-  -webkit-perspective: 500px;
-          perspective: 500px;
+  -webkit-perspective: 30cm;
+          perspective: 30cm;
   position: relative;
-  cursor: pointer;
-  z-index: 50;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .card .inside {
@@ -63,38 +58,73 @@ body {
   border-radius: 3%;
   background: white;
 }
-.card .inside.picked, .card .inside.matched {
+
+
+/* .card .inside.picked, .card .inside.matched { */
+.inside.picked, .inside.matched {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
+          
 }
-.card .inside.matched {
-  -webkit-animation: 1s matchAnim ease-in-out;
-          animation: 1s matchAnim ease-in-out;
-  -webkit-animation-delay: .4s;
-          animation-delay: .4s;
+.inside.matched {
+
+          background: green;
 }
-.card .front, .card .back {
+
+.card .back {
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* z-index: 100; */
+}
+
+.card .front, .card .back {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
-.card .front img, .card .back img {
+
+.card .back img {
   display: block;
   width: 100%;
   height: 100%;
+  border-radius: 3%;
 }
-.card .front {
+
+.card .front img {
+  display: block;
+  width: 90%;
+  height: 90%;
+  margin-top: 5%; /* 5% Would seem top biased  */
+  margin-left: 5%;
+  border-radius: 3%;
+}
+
+.card .inside  {
+  /* display: none; */
+  visibility: hidden;
+  z-index: 20;
+}
+
+.card .inside.picked {
+  visibility: visible;
+}
+
+.card .back {
+  visibility: visible;
+}
+
+/* Esto generaba el primer bug */
+/* .card .front {
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
-}
-.card .back {
-  -webkit-transform: rotateX(0);
-          transform: rotateX(0);
-}
+} */
+
+
+/* ----- MODAL ------- */
+
+
 
 .modal-overlay {
   display: none;
