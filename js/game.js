@@ -19,6 +19,7 @@
 			this.cardsArray = $.merge(cards, this.$copyCards);
 			this.shuffleCards(this.cardsArray);
 			this.setup();
+
 		},
 
 		modifyCards: function(cardsArray){
@@ -29,6 +30,7 @@
 
 		shuffleCards: function(cardsArray){
 			this.$cards = $(this.shuffle(this.cardsArray));
+
 		},
 
 		setup: function(){
@@ -58,7 +60,8 @@
 			var guessId = $(_.guess).attr("data-id");
 			if(!_.paused && !$card.find(".inside").hasClass("matched") && !$card.find(".inside").hasClass("picked")){
 				$card.find(".inside").addClass("picked");
-				// $card.addClass("picked");
+				//$card.addClass("picked");
+
 				if(!_.guess){
 					_.guess = this;
 				} else if(guessId == $(this).attr("data-id") && !$(this).hasClass("picked")){
@@ -197,6 +200,7 @@
 		for(var prop in cards) {
 			if(cards.hasOwnProperty(prop)) ++count;
 		}
+
 		// if (rows * columns != cards.length * 2 || rows > columns){
 		if (rows * columns != cards.length * 2 ){
 			window.alert("Invalid Grid Size");
